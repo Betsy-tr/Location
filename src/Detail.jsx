@@ -5,6 +5,12 @@ import Loading from './Loading'
 import { useParams } from 'react-router-dom'
 import Location from './Location'
 
+// Importation d'un calendrier 
+
+import Calendrier from './Calendrier'
+
+
+
 const Detail = () => {
 
   const {idlocation} = useParams()
@@ -12,6 +18,13 @@ const Detail = () => {
 
   const [location , setLocation] = useState({})
   const [isLoading , setIsLoading] = useState(true) ; // Lancer le chargement
+
+  const click = () => { 
+
+    window.my_modal_1.showModal()
+
+  }
+
 
   const getOneLocation = async () =>{
 
@@ -92,13 +105,48 @@ const Detail = () => {
 
           <div className='mt-2 border-t border-gray-200 pt-3'>{location.description}</div>
 
+          <div className="form-control mt-6">
+              <button onClick={click} type="submit" className='inline-block cursor-pointer rounded-md bg-accent px-4 py-3 text-center text-xl font-semibold text-white font-serif'>Réserver</button>
+          </div>
         
         </div>
       </div>
-  
+        
+      <div className="carousel w-full py-10">
+        <div id="item1" className="carousel-item overflow-hidden rounded-lg w-full">
+          <img src={location.carousel1} className="w-full" />
+        </div> 
+        <div id="item2" className="carousel-item overflow-hidden rounded-lg w-full">
+          <img src={location.carousel2} className="w-full" />
+        </div> 
+        <div id="item3" className="carousel-item overflow-hidden rounded-lg w-full">
+          <img src={location.carousel3} className="w-full" />
+        </div> 
+        <div id="item4" className="carousel-item overflow-hidden rounded-lg w-full">
+          <img src={location.carousel4} className="w-full" />
+        </div>
+      </div> 
+      <div className="flex justify-center w-full py-2 gap-2">
+        <a href="#item1" className="btn btn-sm bg-accent text-sm font-serif">1</a> 
+        <a href="#item2" className="btn btn-sm bg-accent text-sm font-serif">2</a> 
+        <a href="#item3" className="btn btn-sm bg-accent text-sm font-serif">3</a> 
+        <a href="#item4" className="btn btn-sm bg-accent text-sm font-serif">4</a>
+      </div>
+
         <div className='py-20'>
           <p className='font-serif font-semibold text-sm text-white'>Retourner vers la page d'<a href="/" className='underline'>accueil</a></p>
         </div>
+
+        <dialog id="my_modal_1" className="modal">
+          <form method="dialog" className="modal-box">
+            <Calendrier/>
+            <div className="modal-action">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="inline-block cursor-pointer rounded-md bg-accent px-4 py-3 text-center text-xl font-semibold text-black font-serif">Fermer</button>
+              <button className="inline-block cursor-pointer rounded-md bg-accent px-4 py-3 text-center text-xl font-semibold text-black font-serif">Valider</button>
+            </div>
+          </form>
+        </dialog>
 
     </div>
 

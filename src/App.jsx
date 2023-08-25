@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import Location from './Location'
 
 import './App.css'
+import Calendrier from './Calendrier'
 
 
 
@@ -17,6 +18,8 @@ function App() {
 
         <Route path='/' element={<Liste/>}/>
         <Route path='/detail/:idlocation' element={<Detail/>}/>
+        <Route path='/calendrier' element={<Calendrier/>}/>
+        
 
       </Routes>
       
